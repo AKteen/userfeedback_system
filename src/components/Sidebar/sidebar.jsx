@@ -12,8 +12,8 @@ const Sidebar = () => {
             </div>
             <nav className="sidebar-nav">
                 <Link 
-                    to="/superadmin" 
-                    className={`sidebar-link ${location.pathname === '/superadmin' ? 'active' : ''}`}
+                    to="/" 
+                    className={`sidebar-link ${location.pathname === '/' ? 'active' : ''}`}
                 >
                     Super Admin
                 </Link>

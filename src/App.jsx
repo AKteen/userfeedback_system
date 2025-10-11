@@ -13,8 +13,8 @@ function App() {
       <Sidebar />
       <div className="main-content">
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/superadmin" element={<Superadmin />} />
+          {/* <Route path="/" element={<Login />} /> */}
+          <Route path="/" element={<Superadmin />} />
           <Route path="/user" element={<User />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
