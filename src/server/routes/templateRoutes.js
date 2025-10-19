@@ -2,10 +2,12 @@ import express from 'express';
 import Form from '../models/templateModel.js';
 import mongoose from 'mongoose';
 
+import authMiddleware from '../middleware/authMiddleware.js';
+
 const router = express.Router();
 
 
-router.post('/', async(req, res)=>{
+router.post('/', authMiddleware, async(req, res)=>{
     console.log("template post hit");
     try{
         const {title, description, feilds, role}= req.body;
@@ -31,7 +33,7 @@ router.post('/', async(req, res)=>{
 });
 
 
-router.get('/', async(req, res)=>{
+router.get('/',authMiddleware, async(req, res)=>{
     console.log("template get hit");
 
     try{
@@ -50,7 +52,7 @@ router.get('/', async(req, res)=>{
     }
 });
 
-router.delete('/', async(req, res) => {
+router.delete('/',authMiddleware, async(req, res) => {
     console.log("template delete hit");
     try {
         const result = await Form.deleteMany({});
