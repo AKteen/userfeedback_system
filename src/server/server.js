@@ -4,8 +4,11 @@ import helmet from 'helmet';
 
 import connectDB from './db.js';
 
+import dotenv from 'dotenv';
+import userRoutes from './routes/userRoutes.js';
 import templateRoutes from './routes/templateRoutes.js';
 import responseRoutes from './routes/responseRoutes.js';
+
 
 const app = express();
 
@@ -17,6 +20,7 @@ app.use(helmet());
 connectDB();
 
 
+app.use('/', userRoutes);
 app.use('/template', templateRoutes);
 app.use('/response', responseRoutes);
 

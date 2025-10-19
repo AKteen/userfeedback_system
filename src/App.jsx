@@ -7,19 +7,26 @@ import User from './components/User/user.jsx'
 import Admin from './components/Admin/admin.jsx'
 import Sidebar from './components/Sidebar/sidebar.jsx'
 
+import Protected from './components/Protected/ProtectedRoutes'
+
+
+
+
 function App() {
   return (
-    <Router>
-      <Sidebar />
-      <div className="main-content">
-        <Routes>
-          {/* <Route path="/" element={<Login />} /> */}
-          <Route path="/" element={<Superadmin />} />
-          <Route path="/user" element={<User />} />
+    <Routes>
+        <Route path="/" element={<Login />} />   {/* default route */}
+        <Route path="/login" element={<Login />} />
+        <Route element={<Protected allowedRoles={["user"]} />}>
+          <Route path="/user" element={<User />} /> 
+        </Route>
+        <Route element={<Protected allowedRoles={["admin"]} />}>
           <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </div>
-    </Router>
+        </Route>
+        <Route element={<Protected allowedRoles={["superadmin"]} />}>
+          <Route path="/superadmin" element={<Superadmin />} />
+        </Route>
+      </Routes>
   )
 }
 
