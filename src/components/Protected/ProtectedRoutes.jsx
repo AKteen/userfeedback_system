@@ -5,20 +5,20 @@ import Cookies from "js-cookie";
 const ProtectedRoute = ({ allowedRoles }) => {
   
   
-  const token = Cookies.get("token");
-  const { isAuth, userRole } = useSelector((state) => state.auth);
+  
+  const { isAuth, role } = useSelector((state) => state.auth);
 
-  if (!isAuth || !token) {
+  if (!isAuth) {
     // if not logged in, redirect to login page
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
-  if (allowedRoles && !allowedRoles.includes(userRole)) {
+  if (!allowedRoles.includes(role)) {
     // if logged in but not allowed
-    return <Navigate to="/unauthorized" replace />;
+    return <Navigate to="/" replace />;
   }
 
-  // else render the child routes
+
   return <Outlet />;
 };
 

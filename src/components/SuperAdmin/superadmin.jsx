@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './superadmin.css';
 
+import {useSelector} from 'react-redux'
+
 
 
 const Superadmin = () => {
     const [title, setTitle] = useState('');
+
     const [description, setDescription] = useState('');
     const [fieldName, setFieldName] = useState('');
     const [fieldType, setFieldType] = useState('Text');
@@ -15,6 +18,9 @@ const Superadmin = () => {
     const [responses, setResponses] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
 
+    const {name}= useSelector((state)=>state.auth);
+
+
     const sendTemplate = async (e) => {
         e.preventDefault();
         try {
@@ -23,7 +29,7 @@ const Superadmin = () => {
                 type: field.type,
                 options: field.options
             }));
-            const template = { title, description, feilds, role };
+            const template = { title, description, feilds, role, createdBy: name };
             await axios.post('http://localhost:5000/template', template);
             console.log('Template sent successfully');
             setTitle('');
@@ -83,9 +89,12 @@ const Superadmin = () => {
         }
     };
 
+
+
     return (
         <>
         <div className="template-container">
+                <h2 className="subheads"> Welcome {name}</h2>
                 <h2 className="subheads">Create Dynamic Form</h2>
                 <div className="button-container">
                     <button className="responses-btn" type="button" onClick={fetchResponses}>See Responses</button>

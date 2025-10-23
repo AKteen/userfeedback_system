@@ -29,6 +29,7 @@ router.post('/register', async (req, res) => {
         })
 
 
+
         res.status(200).json({ message: "successfully registered", user:  newUser });
 
     } catch (error) {
@@ -44,24 +45,32 @@ router.post('/login', async (req, res) => {
 
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email });
+        const finduser = await User.findOne({ email });
 
-        if (!user) {
+        if (!finduser) {
             console.log("user does not exist");
             return res.status(401).json({ message: "user does not exist" });
 
         }
 
-        const decoded = await bcrypt.compare(password, user.password);
+
+        const decoded = await bcrypt.compare(password, finduser.password);
         if (!decoded) {
             console.log("password is incorrect");
             return res.status(401).json({ message: "password is incorrect" });
         }
 
-        const token = generateToken(user);
+        const token = await generateToken(finduser);
 
-        const userObj = user.toObject();
-        delete userObj.password;
+        if(!token){
+            console.log("token is null");
+            return res.status(500).json({ message: "Something went wrong" });
+        }
+        if(token){
+            console.log("token ban gya");
+        }
+
+        
 
 
         console.log("logged in");
@@ -71,7 +80,10 @@ router.post('/login', async (req, res) => {
             secure: false,
         });
 
-        res.status(200).json({ message: "logged in", user: userObj });
+        const user = await User.findById(finduser._id).select('-password');
+
+        res.status(200).json({ message: "logged in", user});
+        console.log("res sent");
 
     } catch (error) {
         console.log(error);

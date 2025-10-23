@@ -7,10 +7,10 @@ import authMiddleware from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 
-router.post('/', authMiddleware, async(req, res)=>{
+router.post('/', async(req, res)=>{
     console.log("template post hit");
     try{
-        const {title, description, feilds, role}= req.body;
+        const {title, description, feilds, role, createdBy}= req.body;
         if(req.body){
            
             await Form.deleteMany({});
@@ -19,6 +19,7 @@ router.post('/', authMiddleware, async(req, res)=>{
                 title,
                 description,
                 feilds,
+                createdBy,
                 role
             });
             await newTemplate.save();
@@ -33,7 +34,7 @@ router.post('/', authMiddleware, async(req, res)=>{
 });
 
 
-router.get('/',authMiddleware, async(req, res)=>{
+router.get('/', async(req, res)=>{
     console.log("template get hit");
 
     try{
