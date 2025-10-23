@@ -36,6 +36,10 @@ const Register = () => {
         }
     }
 
+    const goToLogin= ()=>{
+        navigate("/", {replace: true  });
+    }
+
 
     return (
         <>
@@ -50,6 +54,9 @@ const Register = () => {
                     <button onClick={register} className="login-btn">Register</button>
 
                 </div>
+                
+                                <button className="register-btn" onClick={goToLogin}>Login</button>
+
             </div>
         </>
     );

@@ -65,6 +65,35 @@ body{
     
 }
 
+
+
+.login-btn{
+    height: 35px;
+    width: 100px;
+    border: 2px solid deepskyblue;
+    background-color: deepskyblue;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 20px;
+    
+}
+
+.register-btn{
+    margin-top: 20px;
+    height: 35px;
+    width: 200px;
+    border: 2px solid white;
+    background-color: white;
+    color: deepskyblue;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+
+
+
 .login-btn:hover{
     background-color: white;
     color: deepskyblue;

@@ -97,7 +97,7 @@ const Login = () => {
                     <button onClick={handleSubmit} className="login-btn">Login</button>
 
                 </div>
-                <button className="register-btn" onClick={goToLogin}>New? Register user</button>
+                <button className="register-btn" onClick={goToLogin}>New? Register</button>
             </div>
         </>
     );
