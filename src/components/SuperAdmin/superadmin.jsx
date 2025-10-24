@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './superadmin.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+
+
 import {useSelector} from 'react-redux'
 
 
@@ -94,8 +98,11 @@ const Superadmin = () => {
     return (
         <>
         <div className="template-container">
-                <h2 className="subheads"> Welcome {name}</h2>
-                <h2 className="subheads">Create Dynamic Form</h2>
+            <div className="sa-navbar">
+                <h2 className="sa-name"><FontAwesomeIcon icon={faUser} /><p>{name}</p></h2>
+                <button className="logout-btn" >Logout</button>
+            </div>
+                {/* <h2 className="subheads">Create Dynamic Form</h2> */}
                 <div className="button-container">
                     <button className="responses-btn" type="button" onClick={fetchResponses}>See Responses</button>
                     <button className="responses-btn" type="button" onClick={deleteCurrentTemplate}>Delete Template</button>

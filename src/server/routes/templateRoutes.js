@@ -53,7 +53,7 @@ router.get('/', async(req, res)=>{
     }
 });
 
-router.delete('/',authMiddleware, async(req, res) => {
+router.delete('/', async(req, res) => {
     console.log("template delete hit");
     try {
         const result = await Form.deleteMany({});
